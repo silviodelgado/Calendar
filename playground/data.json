@@ -1,0 +1,43 @@
+[{
+        "id": "abc123",
+        "date": "2021-04-21",
+        "time": "09:00",
+        "title": "Reunião",
+        "type": "show"
+    },
+    {
+        "id": "def456",
+        "date": "2021-04-21",
+        "time": "11:00",
+        "title": "Ligação para o comprador do imóvel 002",
+        "type": "call"
+    },
+    {
+        "id": "ghi789",
+        "date": "2021-04-21",
+        "time": "10:40",
+        "title": "Ligação",
+        "type": "call"
+    },
+    {
+        "id": "jkl012",
+        "date": "2021-04-25",
+        "time": "09:00",
+        "title": "Assinatura do Contrato de Compra e Venda",
+        "type": "document"
+    },
+    {
+        "id": "mno345",
+        "date": "2021-04-30",
+        "time": "17:00",
+        "title": "Atualizar site",
+        "type": "reminder"
+    },
+    {
+        "id": "pqr678",
+        "date": "2021-05-04",
+        "time": "10:00",
+        "title": "Vistoria - Imóvel 001 - Vale do Paraíso 1650/303",
+        "type": "inspection"
+    }
+]

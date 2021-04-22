@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../calendar.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-3">
+        <div id="calendar"></div>
+
+        <button type="button" class="btn btn-refresh btn-info">Refresh</button>
+        <button type="button" class="btn btn-add btn-success">Add New</button>
+        <button type="button" class="btn btn-del btn-danger">Remove</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"></script>
+    <script src="moment.min.js"></script>
+    <script src="locales.min.js"></script>
+    <script src="../calendar.min.js"></script>
+    <script>
+        let calendar = new Calendar({
+            container: '#calendar',
+            language: 'pt-br',
+            previousBtn: 'Anterior',
+            todayBtn: 'Hoje',
+            nextBtn: 'Próximo'
+        });
+
+        const tooltip = () => {
+            Array.from(document.querySelectorAll('[title]')).forEach((el, i) => {
+                new bootstrap.Tooltip(el, {
+                    boundary: 'window'
+                });
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('data.json').then(function(response) {
+                return response.json();
+            }).then(json => {
+                calendar.setDates(json);
+            });
+            tooltip();
+            document.querySelector('#calendar').addEventListener('calendar.date.select', (evt) => {
+                console.log('evt', evt);
+                console.log('evt.target', evt.target);
+                console.log('evt.data', evt.data);
+                console.log('evt.data.id', evt.data.id);
+                console.log('evt.data.date', evt.data.date);
+                console.log('evt.data.time', evt.data.time);
+    
+                alert('Event ID: ' + evt.data.id);
+            });
+            document.querySelector('#calendar').addEventListener('calendar.month.change', (evt) => {
+                tooltip();
+            });
+            document.querySelector('.btn-refresh').addEventListener('click', (evt) => {
+                evt.preventDefault();
+                console.log('refresh');
+                calendar.refresh();
+                return false;
+            });
+            document.querySelector('.btn-add').addEventListener('click', (evt) => {
+                evt.preventDefault();
+                calendar.add({
+                    id: Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substring(0, 6),
+                    date: '2021-04-29',
+                    time: '14:30',
+                    title: 'Almoço do CRECI',
+                    type: 'reminder'
+                });
+                return false;
+            });
+            document.querySelector('.btn-del').addEventListener('click', (evt) => {
+                evt.preventDefault();
+                let id = prompt('Event ID:');
+                if (id) {
+                    calendar.remove(id);
+                }
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
