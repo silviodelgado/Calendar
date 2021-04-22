@@ -1,5 +1,5 @@
 /*!
- * Calendar v1.0 - Javascript Calendar plugin to Agenda Applications
+ * Calendar v1.1 - Javascript Calendar plugin to Agenda Applications
  * Copyright 2021 Silvio Delgado (https://github.com/silviodelgado)
  * Licensed under MIT (https://opensource.org/licenses/MIT)
  * Dependencies: moment.js & Bootstrap 5+
@@ -172,7 +172,7 @@
                     let dateStr = dt.format('YYYY-MM-DD');
                     let span = document.createElement('span');
                     span.innerText = days[control];
-                    if (days[control] == moment().format('D')) {
+                    if (days[control] == moment().format('D') && dt.format('MM') == moment().format('MM')) {
                         td.classList.add('today');
                     }
                     td.dataset.dt = dateStr;
