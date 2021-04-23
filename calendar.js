@@ -191,7 +191,14 @@
                     dates.forEach((el, i) => {
                         let content = el.time + ' - ' + el.title;
                         let div = create_elem('div', [['title', content]], ['event', el.type]);
-                        div.innerHTML = '<span>' + content + '</span>';
+                        let span = create_elem('span');
+                        let html = '<span>';
+                        if (el.done) {
+                            html += '<b class="done">&check;</b>';
+                        }
+                        html += content + '</span>';
+                        span.innerHTML = html;
+                        div.appendChild(span);
                         div.addEventListener('click', (evt) => {
                             evt.preventDefault();
                             dispatch_event('calendar.date.select', { 
@@ -276,6 +283,26 @@
 
     calendar.add = (item) => {
         options.dates.push(item);
+        render_component();
+        dispatch_event('calendar.update');
+    };
+
+    calendar.done = (id) => {
+        options.dates.forEach((item, i) => {
+            if (item.id == id) {
+                item.done = true;
+            }
+        });
+        render_component();
+        dispatch_event('calendar.update');
+    };
+
+    calendar.undone = (id) => {
+        options.dates.forEach((item, i) => {
+            if (item.id == id) {
+                item.done = false;
+            }
+        });
         render_component();
         dispatch_event('calendar.update');
     };
