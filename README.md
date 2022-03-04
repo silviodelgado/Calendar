@@ -1,5 +1,5 @@
 # Calendar
-Vanilla Javascript Calendar plugin (agenda)
+Vanilla Javascript Calendar plugin (scheduler)
 
 <hr>
 &copy;2021 Silvio Delgado

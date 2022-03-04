@@ -1,6 +1,6 @@
 /*!
- * Calendar v1.1 - Javascript Calendar plugin to Agenda Applications
- * Copyright 2021 Silvio Delgado (https://github.com/silviodelgado)
+ * Calendar v1.2 - Javascript Calendar plugin for Schedule Applications
+ * Copyright 2022 Silvio Delgado (https://github.com/silviodelgado)
  * Licensed under MIT (https://opensource.org/licenses/MIT)
  * Dependencies: moment.js & Bootstrap 5+
  * https://github.com/silviodelgado/Calendar
@@ -23,9 +23,18 @@
         dates: [],
         date: moment().date(1),
         language: 'en',
-        previousBtn: 'Prev',
-        nextBtn: 'Next',
-        todayBtn: 'Today'
+        previousBtn: {
+            text: 'Prev',
+            class: ['btn-primary']
+        },
+        nextBtn: {
+            text: 'Next',
+            class: ['btn-primary']
+        },
+        todayBtn: {
+            text: 'Today',
+            class: ['btn-outline-primary']
+        }
     };
 
     const calendar = function (params) {
@@ -112,20 +121,20 @@
         let group = create_elem('div', [['role', 'group']], 'btn-group');
         let previous = create_elem('button', [
             ['type', 'button']
-        ], ['navigation', 'previous-month', 'btn', 'btn-sm', 'btn-primary']);
-        previous.innerHTML = options.previousBtn;
+        ], ['navigation', 'previous-month', 'btn', 'btn-sm'].concat(options.previousBtn.class));
+        previous.innerHTML = options.previousBtn.text;
         group.appendChild(previous);
 
         let today = create_elem('button', [
             ['type', 'button']
-        ], ['navigation', 'today', 'btn', 'btn-sm', 'btn-outline-primary']);
-        today.innerHTML = options.todayBtn;
+        ], ['navigation', 'today', 'btn', 'btn-sm'].concat(options.todayBtn.class));
+        today.innerHTML = options.todayBtn.text;
         group.appendChild(today);
 
         let next = create_elem('button', [
             ['type', 'button']
-        ], ['navigation', 'next-month', 'btn', 'btn-sm', 'btn-primary']);
-        next.innerHTML = options.nextBtn;
+        ], ['navigation', 'next-month', 'btn', 'btn-sm'].concat(options.nextBtn.class));
+        next.innerHTML = options.nextBtn.text;
         group.appendChild(next);
 
         container.appendChild(group);
