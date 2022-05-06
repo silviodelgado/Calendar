@@ -6,114 +6,113 @@
  * https://github.com/silviodelgado/Calendar
 */
 .calendar {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 14px;
-    color: #000;
-    background-color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  color: #000;
+  background-color: #fff;
 }
 
 .calendar .calendar-header {
-    border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+@media print {
+  .calendar .calendar-header .btn-group {
+    display: none;
+  }
 }
 
 .calendar .table {
-    border-collapse: collapse;
-    border: 1px solid transparent;
+  border-collapse: collapse;
+  border: 1px solid transparent;
 }
 
 .calendar .table thead,
 .calendar .table thead tr,
 .calendar .table thead tr th {
-    border: none;
+  border: none;
 }
 
 .calendar .table thead tr th {
-    text-align: center;
+  text-align: center;
 }
 
 .calendar .table tbody td {
-    height: 90px;
-    width: calc(100%/7) !important;
-    min-width: calc(100%/7) !important;
-    max-width: calc(100%/7) !important;
-    border: 1px solid #ccc;
-    overflow: hidden;
+  height: 90px;
+  width: calc(100%/7) !important;
+  min-width: calc(100%/7) !important;
+  max-width: calc(100%/7) !important;
+  border: 1px solid #ccc;
+  overflow: hidden;
 }
+
 .calendar .table tbody td > span {
-    display: block;
-    text-align: right;
-    color: #666;
+  display: block;
+  text-align: right;
+  color: #666;
 }
 
 .calendar .table tbody td.today {
-    background-color: #d3ffd3;
+  background-color: #d3ffd3;
 }
 
 .calendar .table tbody td.today > span {
-    font-weight: bold;
-    color: #012999;
-    /*background-color: #ffd8d8;*/
-    /*margin-bottom: 2px;
-    padding-right: 5px;*/
+  font-weight: bold;
+  color: #012999;
 }
 
 .calendar .table tbody td .event {
-    margin-bottom: 2px;
-    padding: 2px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    cursor: pointer;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  margin-bottom: 2px;
+  padding: 2px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .calendar .table tbody td .event * {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .calendar .table tbody td .event b.done {
-    font-style: normal;
-    margin-right: 3px;
+  font-style: normal;
+  margin-right: 3px;
 }
 
 .calendar .table tbody td .event span {
-    font-size: 12px;
-    white-space: nowrap;
-    max-width: 100% !important;
+  font-size: 12px;
+  white-space: nowrap;
+  max-width: 100% !important;
 }
 
 .calendar .table tbody td .event.show {
-    border-color: #4359b9;
-    background-color: #b9b8ff;
+  border-color: #4359b9;
+  background-color: #b9b8ff;
 }
 
 .calendar .table tbody td .event.call {
-    border-color: #b94343;
-    background-color: #ffb8b8;
+  border-color: #b94343;
+  background-color: #ffb8b8;
 }
 
 .calendar .table tbody td .event.document {
-    border-color: #43b9b9;
-    background-color: #b8fff9;
+  border-color: #43b9b9;
+  background-color: #b8fff9;
 }
 
 .calendar .table tbody td .event.reminder {
-    border-color: #43b943;
-    background-color: #b8ffb8;
+  border-color: #43b943;
+  background-color: #b8ffb8;
 }
 
 .calendar .table tbody td .event.inspection {
-    border-color: #b943a5;
-    background-color: #ffb8fb;
+  border-color: #b943a5;
+  background-color: #ffb8fb;
 }
 
 .calendar .table tbody td .event.other {
-    border-color: #8f8f8f;
-    background-color: #e0e0e0;
+  border-color: #8f8f8f;
+  background-color: #e0e0e0;
 }
-
-@media print {
-    .calendar .calendar-header .btn-group {
-        display: none;
-    }
-}
+/*# sourceMappingURL=calendar.css.map */
