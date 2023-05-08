@@ -1,6 +1,6 @@
 /*!
- * Calendar v1.2 - Javascript Calendar plugin for Schedule Applications
- * Copyright 2022 Silvio Delgado (https://github.com/silviodelgado)
+ * Calendar v1.2.1 - Javascript Calendar plugin for Schedule Applications
+ * Copyright 2022-2023 Silvio Delgado (https://github.com/silviodelgado)
  * Licensed under MIT (https://opensource.org/licenses/MIT)
  * Dependencies: moment.js & Bootstrap 5+
  * https://github.com/silviodelgado/Calendar
@@ -10,6 +10,7 @@
   font-size: 14px;
   color: #000;
   background-color: #fff;
+  clear: both;
 }
 
 .calendar .calendar-header {
