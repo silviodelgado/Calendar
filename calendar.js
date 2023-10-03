@@ -198,7 +198,7 @@
                         return 0;
                     });
                     dates.forEach((el, i) => {
-                        let content = el.time + ' - ' + el.title;
+                        let content = (el.time ? el.time + ' - ' : '') + el.title;
                         let div = create_elem('div', [['title', content]], ['event', el.type]);
                         let span = create_elem('span');
                         let html = '<span>';
