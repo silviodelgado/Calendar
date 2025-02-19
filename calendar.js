@@ -1,5 +1,5 @@
 /*!
- * Calendar v1.2 - Javascript Calendar plugin for Schedule Applications
+ * Calendar v1.3.1 - Javascript Calendar plugin for Schedule Applications
  * Copyright 2022 Silvio Delgado (https://github.com/silviodelgado)
  * Licensed under MIT (https://opensource.org/licenses/MIT)
  * Dependencies: moment.js & Bootstrap 5+
@@ -13,7 +13,7 @@
     }
 })(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
     'use strict';
-
+    
     let $moment = moment();
     let weeks = 0;
     let options = {};
@@ -256,19 +256,23 @@
     calendar.next = () => {
         options.date.add(-1, 'month');
         render_component();
-        dispatch_event('calendar.month.change');
+        dispatch_event('calendar.month.change', options.date);
     };
     
     calendar.previous = () => {
         options.date.add(1, 'month');
         render_component();
-        dispatch_event('calendar.month.change');
+        dispatch_event('calendar.month.change', options.date);
     };
     
     calendar.today = () => {
         options.date = moment().lang(options.language).date(1);
         render_component();
         dispatch_event('calendar.month.change');
+    };
+
+    calendar.current = () => {
+        return options.date;
     };
     
     calendar.refresh = () => {

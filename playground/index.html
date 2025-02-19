@@ -18,8 +18,8 @@
         <button type="button" class="btn btn-del btn-danger">Remove</button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="moment.min.js"></script>
     <script src="locales.min.js"></script>
     <script src="../calendar.min.js"></script>
@@ -27,9 +27,18 @@
         let calendar = new Calendar({
             container: '#calendar',
             language: 'pt-br',
-            previousBtn: 'Anterior',
-            todayBtn: 'Hoje',
-            nextBtn: 'Próximo'
+            previousBtn: {
+                text: 'Anterior',
+                class: ['btn-rounded', 'btn-info'],
+            },
+            todayBtn: {
+                text: 'Hoje',
+                class: ['btn-outline-info']
+            },
+            nextBtn: {
+                text: 'Próximo',
+                class: ['btn-rounded', 'btn-info']
+            }
         });
 
         const tooltip = () => {
