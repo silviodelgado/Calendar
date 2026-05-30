@@ -1,5 +1,5 @@
 /*!
- * Calendar v1.3.1 - Javascript Calendar plugin for Schedule Applications
+ * Calendar v1.4.0 - Javascript Calendar plugin for Schedule Applications
  * Copyright 2022 Silvio Delgado (https://github.com/silviodelgado)
  * Licensed under MIT (https://opensource.org/licenses/MIT)
  * Dependencies: moment.js & Bootstrap 5+
@@ -17,6 +17,7 @@
     let $moment = moment();
     let weeks = 0;
     let options = {};
+    const ALLOWED_TYPES = new Set(['show', 'call', 'document', 'reminder', 'inspection', 'other']);
 
     const defaultValues = {
         container: '#calendar',
@@ -38,7 +39,8 @@
     };
 
     const calendar = function (params) {
-        options = Object.assign(defaultValues, params);
+        const sanitized = JSON.parse(JSON.stringify(params));
+        options = Object.assign({}, defaultValues, sanitized);
         $moment.locale(options.language);
         options.date = $moment.date(1);
         render_component();
@@ -106,7 +108,7 @@
 
         let col1 = create_elem('div', null, ['col-sm-6', 'text-start'])
         let h3 = create_elem('h3');
-        h3.innerHTML = options.date.format('MMMM YYYY');
+        h3.textContent = options.date.format('MMMM YYYY');
         col1.appendChild(h3);
         header.appendChild(col1);
 
@@ -122,19 +124,19 @@
         let previous = create_elem('button', [
             ['type', 'button']
         ], ['navigation', 'previous-month', 'btn', 'btn-sm'].concat(options.previousBtn.class));
-        previous.innerHTML = options.previousBtn.text;
+        previous.textContent = options.previousBtn.text;
         group.appendChild(previous);
 
         let today = create_elem('button', [
             ['type', 'button']
         ], ['navigation', 'today', 'btn', 'btn-sm'].concat(options.todayBtn.class));
-        today.innerHTML = options.todayBtn.text;
+        today.textContent = options.todayBtn.text;
         group.appendChild(today);
 
         let next = create_elem('button', [
             ['type', 'button']
         ], ['navigation', 'next-month', 'btn', 'btn-sm'].concat(options.nextBtn.class));
-        next.innerHTML = options.nextBtn.text;
+        next.textContent = options.nextBtn.text;
         group.appendChild(next);
 
         container.appendChild(group);
@@ -198,15 +200,16 @@
                         return 0;
                     });
                     dates.forEach((el, i) => {
-                        let content = (el.time ? el.time + ' - ' : '') + el.title;
-                        let div = create_elem('div', [['title', content]], ['event', el.type]);
-                        let span = create_elem('span');
-                        let html = '<span>';
+                        let content = (el.time ? String(el.time) + ' - ' : '') + String(el.title || '');
+                        let safe_type = ALLOWED_TYPES.has(el.type) ? el.type : 'other';
+                        let div = create_elem('div', [['title', content]], ['event', safe_type]);
+                        const span = create_elem('span');
+                        span.appendChild(document.createTextNode(content));
                         if (el.done) {
-                            html += '<b class="done">&check;</b>';
+                            const b = create_elem('b', null, 'done');
+                            b.textContent = ' ✓';
+                            span.appendChild(b);
                         }
-                        html += content + '</span>';
-                        span.innerHTML = html;
                         div.appendChild(span);
                         div.addEventListener('click', (evt) => {
                             evt.preventDefault();
@@ -245,7 +248,7 @@
 
     const render_component = () => {
         let container = document.querySelector(options.container);
-        container.innerHTML = '';
+        container.textContent = '';
         container.classList.add('calendar');
 
         render_header(container);
