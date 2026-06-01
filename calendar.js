@@ -257,19 +257,19 @@
     };
 
     calendar.next = () => {
-        options.date.add(-1, 'month');
-        render_component();
-        dispatch_event('calendar.month.change', options.date);
-    };
-    
-    calendar.previous = () => {
         options.date.add(1, 'month');
         render_component();
         dispatch_event('calendar.month.change', options.date);
     };
     
+    calendar.previous = () => {
+        options.date.add(-1, 'month');
+        render_component();
+        dispatch_event('calendar.month.change', options.date);
+    };
+    
     calendar.today = () => {
-        options.date = moment().lang(options.language).date(1);
+        options.date = moment().locale(options.language).date(1);
         render_component();
         dispatch_event('calendar.month.change');
     };
@@ -327,14 +327,14 @@
         let previous = document.querySelector('.calendar .navigation.previous-month');
         previous.addEventListener('click', (evt) => {
             evt.preventDefault();
-            calendar.next();
+            calendar.previous();
             return false;
         });
 
         let next = document.querySelector('.calendar .navigation.next-month');
         next.addEventListener('click', (evt) => {
             evt.preventDefault();
-            calendar.previous();
+            calendar.next();
             return false;
         });
 
